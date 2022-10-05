@@ -1,0 +1,5 @@
+node_modules
+**/*.js
+prisma
+src/generated
+src/graphql

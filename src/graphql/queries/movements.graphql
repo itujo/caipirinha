@@ -1,0 +1,33 @@
+query Movements($where: MovementWhereInput, $take: Int, $skip: Int) {
+  movements(where: $where, take: $take, skip: $skip) {
+    id
+    label
+    postingDate
+    centerOfCost {
+      name
+    }
+    destinationCity {
+      name
+    }
+    file {
+      name
+    }
+    originCity {
+      name
+    }
+
+    postalCard {
+      number
+      owner
+    }
+
+    unitCost
+    serviceValue
+  }
+
+  aggregateMovement {
+    _count {
+      id
+    }
+  }
+}
