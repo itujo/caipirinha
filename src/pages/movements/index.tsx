@@ -7,7 +7,7 @@ import { MovementWhereInput, useMovementsQuery } from '../../generated/graphql';
 export default function MovementsIndex() {
   const [limit, setLimit] = useState(10);
   const [offset, setOffset] = useState(0);
-  const [movWhere, setMovWhere] = useState<MovementWhereInput | null>(null);
+  const [movWhere] = useState<MovementWhereInput | null>(null);
 
   const { data, loading, refetch } = useMovementsQuery({
     variables: {
