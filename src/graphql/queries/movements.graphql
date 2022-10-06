@@ -1,5 +1,10 @@
-query Movements($where: MovementWhereInput, $take: Int, $skip: Int) {
-  movements(where: $where, take: $take, skip: $skip) {
+query movements(
+  $where: MovementWhereInput
+  $take: Int
+  $skip: Int
+  $orderBy: [MovementOrderByWithRelationInput!]
+) {
+  movements(where: $where, take: $take, skip: $skip, orderBy: $orderBy) {
     id
     label
     postingDate
@@ -25,7 +30,7 @@ query Movements($where: MovementWhereInput, $take: Int, $skip: Int) {
     serviceValue
   }
 
-  aggregateMovement {
+  aggregateMovement(where: $where) {
     _count {
       id
     }

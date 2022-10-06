@@ -38,7 +38,7 @@ function Pagination({
           <button
             type='button'
             onClick={() => onPageChange(current - 1)}
-            disabled={current === 1}
+            disabled={current === 1 || total <= limit}
             className={cn(
               'ml-0 rounded-l-lg border border-gray-300 py-2  px-3 leading-tight text-gray-500  hover:bg-gray-100 hover:text-gray-700',
               current === 1 && 'cursor-not-allowed text-gray-100'
@@ -47,19 +47,21 @@ function Pagination({
             Anterior
           </button>
         </li>
-        <li key={1}>
-          <button
-            type='button'
-            onClick={() => setOffset(0)}
-            className={cn(
-              current === 1
-                ? 'border border-gray-300 bg-green-50 py-2 px-3 text-green-600 hover:bg-green-100'
-                : 'border border-gray-300 bg-white py-2 px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700'
-            )}
-          >
-            {1}
-          </button>
-        </li>
+        {total >= limit && (
+          <li key={1}>
+            <button
+              type='button'
+              onClick={() => setOffset(0)}
+              className={cn(
+                current === 1
+                  ? 'border border-gray-300 bg-green-50 py-2 px-3 text-green-600 hover:bg-green-100'
+                  : 'border border-gray-300 bg-white py-2 px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700'
+              )}
+            >
+              {1}
+            </button>
+          </li>
+        )}
 
         <li>
           <button
@@ -74,25 +76,27 @@ function Pagination({
             ...
           </button>
         </li>
-        {Array.from({ length: Math.min(MAX_ITEMS, pages) })
-          .map((_, index) => index + first)
-          .map((page) =>
-            page !== 1 && page !== pages ? (
-              <li key={page}>
-                <button
-                  type='button'
-                  onClick={() => onPageChange(page)}
-                  className={cn(
-                    current === page
-                      ? 'border border-gray-300 bg-green-50 py-2 px-3 text-green-600 hover:bg-green-100'
-                      : 'border border-gray-300 bg-white py-2 px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700'
-                  )}
-                >
-                  {page}
-                </button>
-              </li>
-            ) : null
-          )}
+
+        {total <= limit &&
+          Array.from({ length: Math.min(MAX_ITEMS, pages) })
+            .map((_, index) => index + first)
+            .map((page) =>
+              page !== 1 && page !== pages ? (
+                <li key={page}>
+                  <button
+                    type='button'
+                    onClick={() => onPageChange(page)}
+                    className={cn(
+                      current === page
+                        ? 'border border-gray-300 bg-green-50 py-2 px-3 text-green-600 hover:bg-green-100'
+                        : 'border border-gray-300 bg-white py-2 px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700'
+                    )}
+                  >
+                    {page}
+                  </button>
+                </li>
+              ) : null
+            )}
 
         <li>
           <button

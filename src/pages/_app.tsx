@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { Navbar } from '../components/Navbar';
 import { AuthProvider } from '../contexts/AuthContext';
 import '../styles/globals.css';
-import { createClient } from './utils/withApollo';
+import { createClient } from '../utils/withApollo';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();

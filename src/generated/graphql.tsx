@@ -6826,6 +6826,7 @@ export type MovementsQueryVariables = Exact<{
   where?: InputMaybe<MovementWhereInput>;
   take?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<MovementOrderByWithRelationInput> | MovementOrderByWithRelationInput>;
 }>;
 
 
@@ -6943,8 +6944,8 @@ export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
 export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = Apollo.QueryResult<MeQuery, MeQueryVariables>;
 export const MovementsDocument = gql`
-    query Movements($where: MovementWhereInput, $take: Int, $skip: Int) {
-  movements(where: $where, take: $take, skip: $skip) {
+    query movements($where: MovementWhereInput, $take: Int, $skip: Int, $orderBy: [MovementOrderByWithRelationInput!]) {
+  movements(where: $where, take: $take, skip: $skip, orderBy: $orderBy) {
     id
     label
     postingDate
@@ -6967,7 +6968,7 @@ export const MovementsDocument = gql`
     unitCost
     serviceValue
   }
-  aggregateMovement {
+  aggregateMovement(where: $where) {
     _count {
       id
     }
@@ -6990,6 +6991,7 @@ export const MovementsDocument = gql`
  *      where: // value for 'where'
  *      take: // value for 'take'
  *      skip: // value for 'skip'
+ *      orderBy: // value for 'orderBy'
  *   },
  * });
  */
