@@ -75,10 +75,7 @@ export default function MovementsIndex() {
 
   if (!loading && data) {
     const totalItems = data?.aggregateMovement?._count?.id ?? 0;
-    const handleSearchClick = () => {
-      reft();
-      console.log(data);
-    };
+
     return (
       <div>
         <div className='grid md:flex md:flex-1 md:gap-6'>
@@ -137,7 +134,7 @@ export default function MovementsIndex() {
             <button
               type='button'
               className='mr-2 inline-flex h-12 items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300'
-              onClick={handleSearchClick}
+              onClick={reft}
             >
               <svg
                 role='status'
