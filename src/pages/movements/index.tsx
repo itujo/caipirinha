@@ -236,12 +236,6 @@ export default function MovementsIndex() {
           setOffset={setOffset}
           setLimit={setLimit}
         />
-        {/* <button type='button' onClick={() => setPage(page - 1)}>
-          voltar pagina
-        </button>
-        <button type='button' onClick={() => setPage(page + 1)}>
-          avançar pagina
-        </button> */}
       </div>
     );
   }

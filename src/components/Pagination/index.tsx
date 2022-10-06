@@ -77,26 +77,25 @@ function Pagination({
           </button>
         </li>
 
-        {total <= limit &&
-          Array.from({ length: Math.min(MAX_ITEMS, pages) })
-            .map((_, index) => index + first)
-            .map((page) =>
-              page !== 1 && page !== pages ? (
-                <li key={page}>
-                  <button
-                    type='button'
-                    onClick={() => onPageChange(page)}
-                    className={cn(
-                      current === page
-                        ? 'border border-gray-300 bg-green-50 py-2 px-3 text-green-600 hover:bg-green-100'
-                        : 'border border-gray-300 bg-white py-2 px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700'
-                    )}
-                  >
-                    {page}
-                  </button>
-                </li>
-              ) : null
-            )}
+        {Array.from({ length: Math.min(MAX_ITEMS, pages) })
+          .map((_, index) => index + first)
+          .map((page) =>
+            page !== 1 && page !== pages ? (
+              <li key={page}>
+                <button
+                  type='button'
+                  onClick={() => onPageChange(page)}
+                  className={cn(
+                    current === page
+                      ? 'border border-gray-300 bg-green-50 py-2 px-3 text-green-600 hover:bg-green-100'
+                      : 'border border-gray-300 bg-white py-2 px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700'
+                  )}
+                >
+                  {page}
+                </button>
+              </li>
+            ) : null
+          )}
 
         <li>
           <button
